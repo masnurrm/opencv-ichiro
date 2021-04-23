@@ -15,24 +15,31 @@ while(1):
     upper_blue = np.array([130, 255, 255])
 
     lower_red = np.array([0, 100, 100])
-    upper_red = np.array([10, 255, 255])
+    upper_red = np.array([30, 255, 255])
 
     lower_green = np.array([30, 50, 70])
     upper_green = np.array([102, 255, 255])
 
+    lower_rgb = np.array([0, 100, 100])
+    upper_rgb = np.array([130, 255, 255])
+    
+    
     # Threshold the HSV image to get only blue colors
     mask_blue = cv.inRange(hsv, lower_blue, upper_blue)
     mask_red = cv.inRange(hsv, lower_red, upper_red)
     mask_green = cv.inRange(hsv, lower_green, upper_green)
+    mask_rgb = cv.inRange(hsv, lower_rgb, upper_rgb)
 
     # Bitwise-AND mask and original image
     res_blue = cv.bitwise_and(frame, frame, mask = mask_blue)
     res_red = cv.bitwise_and(frame, frame, mask = mask_red)
     res_green = cv.bitwise_and(frame, frame, mask = mask_green)
+    res_rgb = cv.bitwise_and(frame, frame, mask = mask_rgb)
 
     # cv.imshow('blue', res_blue)
-    cv.imshow('red', res_red)
+    # cv.imshow('red', res_red)
     # cv.imshow('green', res_green)
+    cv.imshow('RGB', res_rgb)
 
     k = cv.waitKey(5) & 0xFF
     if k == 27:
