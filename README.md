@@ -116,5 +116,17 @@ Laplacian Derivatives akan menghitung nilai Laplace dari suatu gambar yang diinp
 </br>
 
 ## Canny Edge Detection
+Terdapat beberapa kelebihan pada algoritma Canny Edge Detection ini, antara lain:
+1. Merupakan algoritma dengan tahap-tahap, dan berkesinambungan.
+2. Noise reduction, dengan menggunakan 5x5 kernel Gaussian filter blur.
+3. Finding Intensity Gradient of the Image, dengan menggunakan Sobel kernel secara horizontal dan vertikal. Dengan ini, akan didapat `edge gradient` dan arah dari setiap piksel. Arah gradien selalu tegak lurus dengan `edge`.
+4. Non-maximum Suppression.
+5. Hysteresis Thresholding.
+ 
+Pada openCV, untuk melakukan Canny Edge Detection, fungsi yang digunakan adalah `cv.Canny()` dengan argumen yaitu minVal, maxVal (pada thresholding), apartureSize (ukuran kernel untuk Gaussian), dan L2gradient untuk menentukan persamaan gradien. Pada dokumentasi openCV, contoh baris kode penggunaan fungsi tersebut sebagai berikut.
+
+`edges = cv.Canny(img, 100, 200)`
+
+</br>
 
 ## Image Pyramids
