@@ -1,3 +1,15 @@
 # Ichiro - Image Processing in OpenCV
 
-Sebagai tugas kedua dalam 
+Tugas kedua dalam magang Ichiro mengacu pada dokumentasi [OpenCV 2 Python 3.9.x](https://docs.opencv.org/master/d2/d96/tutorial_py_table_of_contents_imgproc.html'). Dokumentasi ini berfokus pada image processing. Metode-metode dalam image processing di sini juga dapat ditemui pada aplikasi pengolah gambar atau photo editing, seperti `Adobe Photoshop`. Jadi, setelah saya pelajari, materi metode image processing dalam dokumentasi OpenCV 2 ini lebih mudah dipahami apabila sudah familiar dengan aplikasi seperti Adobe Photoshop tersebut, setidaknya mengetahui *apa yang akan terjadi pada gambar apabila saya melakukan metode atau proses ini*. Beberapa fungsi dasar yang digunakan seperti `cv.imread`, `cv.VideoCapture()`, `cv.imshow`, dan `cv.imwrite()`.
+
+## Changing Colorspaces
+
+### Changing Color-space
+Materi ini membahas tentang cara konversi basis kode warna Red Green Blue RGB (atau BGR dalam pemrosesan bahasa Python) menjadi basis kode Hue Saturation Value HSV dengan `cv.COLOR_BGR2HSV`, atau sebaliknya, dan juga ke Gray dengan `cv.COLOR_BGR2GRAY`. Dalam materi ini, ditunjukkan cara konversi RGB -> HSV dengan menggunakan fungsi `cv.cvtColor()`. Selain itu, terdapat pula fungsi `cv.inRange()` untuk mendapatkan range warna dari suatu objek, dalam hal ini adalah video dari webcam. 
+
+### Object Tracking
+Materi ini membahas tentang bagaimana mengimplementasikan cara konversi warna sebelumnya. Secara sederhana, setiap frame video (RGB) yang diambil akan dikonversi menjadi basis HSV. Kemudian, menggunakan fungsi `cv.inRange()`, range warna Hue yang diinginkan diatur dengan memberikan batas bawah dan atasnya. Untuk mendapatkan range-nya, dapat menggunakan fungsi bawaan numpy `np.uint8([[[B,G,R]]])`, dan melakukan konversi dengan `cv.cvtColor()`, sehingga didapatkan keluaran berupa array range dari warna tersebut. Cara lain, dapat menggunakan tools `Hue & Saturation` di Adobe Photoshop. Selanjutnya, frame dengan warna tersebut bisa diekstrak atau dioutputkan. 
+
+### Exercise
+Dalam exercise ini, untuk mengekstrak banyak warna (misal 3 warna, merah, hijau, dan biru), terdapat 2 cara yang bisa saya lakukan. Yang pertama adalah dengan menyatukan ketiga warna yang diekstrak menjadi satu variabel, seperti `res_bgr = res_blue + res_green + res_red`. Sedangkan yang kedua adalah dengan mengatur range dari Hue pada `cv.inRange()`, dengan syarat warna-warna yang ingin diekstrak harus memiliki range Hue yang berurutan. Pada kode saya, dengan cara kedua, warna kuning dengan Hue yang berada di antara merah dan hijau, ikut terekstrak. [Kode](https://github.com/masnurrm/opencv-ichiro/blob/main/changing-colorspaces/changing-colorspace.py) dan [Dokumentasi](https://drive.google.com/file/d/1uPfb43W9H1QrPr5JjAguaF-O-H0W0Ib7/view?usp=sharing).
+
