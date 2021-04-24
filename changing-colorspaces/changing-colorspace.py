@@ -14,13 +14,13 @@ while(1):
     lower_blue = np.array([100, 100, 100])
     upper_blue = np.array([130, 255, 255])
 
-    lower_red = np.array([0, 100, 100])
+    lower_red = np.array([0, 100, 85])
     upper_red = np.array([30, 255, 255])
 
-    lower_green = np.array([30, 50, 70])
-    upper_green = np.array([102, 255, 255])
+    lower_green = np.array([60, 100, 70])
+    upper_green = np.array([100, 255, 255])
 
-    lower_rgb = np.array([0, 100, 100])
+    lower_rgb = np.array([0, 80, 80])
     upper_rgb = np.array([130, 255, 255])
     
     
@@ -35,11 +35,14 @@ while(1):
     res_red = cv.bitwise_and(frame, frame, mask = mask_red)
     res_green = cv.bitwise_and(frame, frame, mask = mask_green)
     res_rgb = cv.bitwise_and(frame, frame, mask = mask_rgb)
+    res_bgr = res_blue + res_green + res_red
 
     # cv.imshow('blue', res_blue)
     # cv.imshow('red', res_red)
     # cv.imshow('green', res_green)
-    cv.imshow('RGB', res_rgb)
+    cv.imshow('normal', frame)
+    # cv.imshow('RGB', res_rgb)
+    cv.imshow('BGR', res_bgr)
 
     k = cv.waitKey(5) & 0xFF
     if k == 27:
