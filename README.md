@@ -1,2 +1,3 @@
-# opencv-ichiro
- For the task of Ichiro's intern
+# Ichiro - Image Processing in OpenCV
+
+Sebagai tugas kedua dalam 
