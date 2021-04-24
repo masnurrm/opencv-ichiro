@@ -1,6 +1,6 @@
 # Ichiro - Image Processing in OpenCV
 
-Tugas kedua dalam magang Ichiro mengacu pada dokumentasi [OpenCV 2 Python 3.9.x](https://docs.opencv.org/master/d2/d96/tutorial_py_table_of_contents_imgproc.html'). Dokumentasi ini berfokus pada image processing. Metode-metode dalam image processing di sini juga dapat ditemui pada aplikasi pengolah gambar atau photo editing, seperti `Adobe Photoshop`. Jadi, setelah saya pelajari, materi metode image processing dalam dokumentasi OpenCV 2 ini lebih mudah dipahami apabila sudah familiar dengan aplikasi seperti Adobe Photoshop tersebut, setidaknya mengetahui **apa yang akan terjadi pada gambar apabila saya melakukan metode atau proses ini**. Beberapa fungsi dasar yang digunakan seperti `cv.imread()`, `cv.VideoCapture()`, `cv.imshow()`, dan `cv.imwrite()`.
+Tugas kedua dalam magang Ichiro mengacu pada dokumentasi [OpenCV 2 Python 3.9.x](https://docs.opencv.org/master/d2/d96/tutorial_py_table_of_contents_imgproc.html'). Dokumentasi ini berfokus pada image processing. Metode-metode dalam image processing di sini juga dapat ditemui pada aplikasi pengolah gambar atau photo editing, seperti `Adobe Photoshop`. Jadi, setelah saya pelajari, materi metode image processing dalam dokumentasi OpenCV 2 ini lebih mudah dipahami apabila sudah familiar dengan aplikasi seperti Adobe Photoshop tersebut, setidaknya mengetahui **apa yang akan terjadi pada gambar apabila saya melakukan metode atau proses ini**. Beberapa fungsi dasar yang digunakan seperti `cv.imread()`, `cv.VideoCapture()`, `cv.imshow()`, dan `cv.imwrite()`. Semua yang ditulis di sini, telah dicoba dan berjalan dengan baik sesuai fungsinya.
 
 </br>
 
@@ -59,3 +59,23 @@ Dengan Otsu's Binarization, nilai ambang batas threshold didapat secara otomatis
 </br>
 
 ## Smoothing Images
+Singkatnya, materi ini membahas tentang cara image blurring. Beberapa jenis blur dapat ditemui di Adobe Photoshop, seperti Gaussian Blur.
+
+### 2D Convolution
+2D Convolution berfungsi untuk menghilangkan noise pada gambar, dengan cara membuat gambar menjadi blur. Fungsi yang digunakan adalah `cv.filter2D()` untuk menyambungkan gambar dengan titik-titik koordinat (kernel) matriks. Dalam materi ini, digunakan matriks 5x5 untuk melakukan average filter blur, dengan cara mendapatkan nilai rata-rata dari piksel di antara titik-titik tersebut.
+
+### Image Blurring - Averaging
+Untuk melakukan Average Blur ini, fungsi yang digunakan adalah `cv.blur()` dengan argumen yaitu gambar dan ukuran matriks (sebagai kernel). Semakin kecil ukuran matriks, maka gambar semakin blur.
+
+### Image Blurring - Gaussian Blur
+Untuk melakukan Gaussian Blur, fungsi yang digunakan adalah `cv.GaussianBlur()`, dengan memanfaatkan Gaussian kernel. Untuk membuat kernel, dapat menggunakan `cv.getGaussianKernel()`. Gaussian blur sangat efektif untuk menghilangkan noise pada gambar. 
+
+### Image Blurring - Median Blurring
+Untuk melakukan Median Blur, fungsi yang digunakan adalah `cv.medianBlur()`. Median blur bekerja dengan cara mengambil median dari semua piksel di bawah area kernel dan elemen tengah, kemudian diganti dengan nilai mediannya, bukan rata-rata (average). Ukuran kernel harus berupa bilangan bulat ganjil positif, sehingga memiliki median yang jelas. 
+
+### Image Blurring - Bilateral Filtering
+Bilateral Filtering sangat efektif untuk menghilangkan noise seperti Gaussian, namun dengan menjaga agar tepian suatu objek tetap tajam (tidak ikut terblur). Namun, prosesnya akan lebih lama dibanding Gaussian. Fungsi yang digunakan adalah `cv.bilateralFilter()`.
+
+</br>
+
+## Morphological Transformations
