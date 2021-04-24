@@ -38,3 +38,24 @@ Perspective Transformation merupakan transformasi gambar dengan menggunakan acua
 </br>
 
 ## Image Thresholding 
+Image Tresholding secara sederhana merupakan pemisahan objek dalam gambar berdasarkan perbedaan Value pada HSV (gelap-terangnya). 
+
+### Simple Thresholding
+Pada Simple Thresholding, terdapat fungsi `cv.threshold` (tipe `cv.THRESH_BINARY`)dengan argumen fungsinya adalah gambar (dalam grayscale), nilai ambang batas atau threshold untuk klasifikasi value piksel, dan nilai maksimum value yang diterapkan pada piksel. Beberapa tipe fungsi threshold lain yaitu:
+- cv.THRESH_BINARY
+- cv.THRESH_BINARY_INV
+- cv.THRESH_TRUNC
+- cv.THRESH_TOZERO
+- cv.THRESH_TOZERO_INV
+
+Outputnya, adalah gambar hitam putih, seperti hasil fotocopy.
+
+### Adaptive Thresholding
+Pada Adaptive Thresholding, nilai ambang batas threshold ditentukan berdasarkan wilayah kecil di sekitar suatu piksel sehingga lebih mendetail, berbeda dengan sebelumnya yang hanya menggunakan satu nilai ambang batas threshold (global). Adaptive Threshold baik dipakai saat gambar tidak terlalu kontras nilai value HSV-nya. Fungsi yang digunakan, yaitu `cv.adaptiveThreshold` dengan argumennya antara lain gambar, metode, dan fungsi `cv.THRESH_BINARY`. Terdapat dua metode yang dapat digunakan, yaitu `cv.ADAPTIVE_THRESH_MEAN_C` dan `cv.ADAPTIVE_THRESH_GAUSSIAN_C`.
+
+### Otsu's Binarization
+Dengan Otsu's Binarization, nilai ambang batas threshold didapat secara otomatis, dengan menggunakan histogram untuk mencari nilainya. Nilai ambang batas threshold yang digunakan adalah nilai yang terdapat di antara dua puncak value pada histogram. Histogram sendiri merupakan grafik yang menunjukkan penyebaran intensitas pixel dari suatu gambar. Di sini, skala grafik merupakan nilai Value HSV dari gambar (gelap-terangnya). Fungsi yang digunakan adalah `cv.threshold()` dengan `cv.THRESH_OTSU` sebagai argumennya sehingga akan didapatkan nilai ambang batas threshold. Untuk pengoptimalannya, gambar yang digunakan dapat diproses dengan `cv.GaussianBlur` agar grafik histogram didapatkan perbedaan puncak yang lebih jelas.
+
+</br>
+
+## Smoothing Images
