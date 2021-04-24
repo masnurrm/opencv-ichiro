@@ -130,3 +130,16 @@ Pada openCV, untuk melakukan Canny Edge Detection, fungsi yang digunakan adalah 
 </br>
 
 ## Image Pyramids
+Secara sederhana, materi Image Pyramids membahas tentang cara menurunkan atau menaikkan resolusi dari gambar, dengan ukuran (dimensi) yang sama. Fungsi yang digunakan adalah `cv.pyrUp()` dan `cv.pyrDown()`.
+
+### Image Pyramids - Image Blending
+Salah satu implementasi Image Pyramids adalah image blending. Dengan menggunakan Image Pyramids, penggabungan gambar yang dihasilkan akan lebih halus. Proses dalam Image Blending dengan Image Pyramids adalah sebagai berikut (gambar apel dan jeruk):
+1. Input dua gambar, yaitu apel dan jeruk.
+2. Temukan Gaussian Pyramid untuk apel dan jeruk (dalam contoh khusus ini, jumlah level adalah 6).
+3. Dari Gaussian Pyramid, temukan Laplacian Pyramid.
+4. Sekarang gabungkan separuh kiri apel dan separuh kanan jeruk di setiap level Laplacian Pyramid.
+5. Akhirnya dari gambar bersama piramida ini, rekonstruksi gambar aslinya.
+
+Terdapat beberapa hal yang harus diperhatikan dalam melakukan Image Blending ini berdasarkan pengalaman saya, yaitu:
+1. Gambar harus berada di satu direktori yang sama.
+2. Ukuran (height x width) kedua gambar harus sama.
