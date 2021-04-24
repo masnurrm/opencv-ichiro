@@ -1,11 +1,11 @@
 import numpy as np 
 import cv2 as cv
 
-webcam = cv.VideoCapture(0) 
+cap = cv.VideoCapture(0) 
 
 while(1): 
 	
-	_, imageFrame = webcam.read() 
+	_, imageFrame = cap.read() 
 
 	hsvFrame = cv.cvtColor(imageFrame, cv.COLOR_BGR2HSV) 
 
@@ -24,17 +24,14 @@ while(1):
 	kernal = np.ones((5, 5), "uint8") 
 	
 	red_mask = cv.dilate(red_mask, kernal) 
-	res_red = cv.bitwise_and(imageFrame, imageFrame, 
-							mask = red_mask) 
+	res_red = cv.bitwise_and(imageFrame, imageFrame, mask = red_mask) 
 	
 	green_mask = cv.dilate(green_mask, kernal) 
-	res_green = cv.bitwise_and(imageFrame, imageFrame, 
-								mask = green_mask) 
+	res_green = cv.bitwise_and(imageFrame, imageFrame, mask = green_mask) 
 	
 	# For blue color 
 	blue_mask = cv.dilate(blue_mask, kernal) 
-	res_blue = cv.bitwise_and(imageFrame, imageFrame, 
-							mask = blue_mask) 
+	res_blue = cv.bitwise_and(imageFrame, imageFrame, mask = blue_mask) 
 
 	# Creating contour to track red color 
 	contours, hierarchy = cv.findContours(red_mask, 
@@ -87,7 +84,7 @@ while(1):
 						1.0, (255, 0, 0)) 
 			
 	# Program Termination 
-	cv.imshow("Multiple Color Detection in Real-TIme", imageFrame) 
+	cv.imshow("RGB", imageFrame) 
 	if cv.waitKey(10) & 0xFF == ord('q'): 
 		cap.release() 
 		cv.destroyAllWindows() 
