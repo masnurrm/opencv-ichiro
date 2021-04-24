@@ -79,3 +79,42 @@ Bilateral Filtering sangat efektif untuk menghilangkan noise seperti Gaussian, n
 </br>
 
 ## Morphological Transformations
+Materi ini membahas tentang transformasi yang mengacu pada objek di dalam gambar.
+
+### Erosion
+Erosion merupakan transformasi yang memiliki konsep seperti erosi tanah longsor. Singkatnya, dengan erosion ini, objek pada gambar akan tertikis dari tepiannya, sehingga akan menjadi lebih tipis dari sebelumnya. Fungsi yang digunakan adalah `cv.erode()`, dengan argumen yaitu gambar, kernel (matriks), dan iterations (nilai 1 berarti dilakukan erosi, sedangkan 0 berarti tidak)
+
+### Dilation
+Dilation merupakan kebalikan dari erosi, sehingga objek pada gambar akan menjadi lebih tebal dari sebelumnya. Fungsi yang digunakan adalah `cv.dilate()` dengan argumen yang sama seperti `cv.erode()`. Kombinasi penggunaan erosion dan dilation dapat mengurangi noise pada tepi suatu objek pada gambar, dengan efek samping objek akan sedikit lebih tebal pada akhirnya.
+
+### Opening
+Opening merupakan kombinasi penggunaan erosion, yang selanjutnya diikuti dilation. Fungsi yang digunakan adalah `cv.morphologyEx()`, dengan argumen yaitu gambar, fungsi `cv.MORPH_OPEN`, dan kernelnya.
+
+### Closing
+Closing merupakan kebalikan dari opening. Fungsi yang digunakan juga sama, hanya perubahan pada `cv.MORPH_OPEN` yang diganti dengan `cv.MORPH_CLOSE`.
+
+### Morphological Gradient
+Morphological Gradient akan menghasilkan output berupa garis tepi dari objek di dalam gambar. Outline itu merupakan selisih dari dilation dan erosion, dengan outline yang dihasilkan tidak berwarna solid. Fungsi yang digunakan sama seperti pada opening, hanya terdapat perubahan pada `cv.MORPH_OPEN` yang diganti dengan `cv.MORPH_GRADIENT`.
+
+### Top Hat
+Top Hat merupakan perbedaan antara gambar awal yang diinputkan, dengan gambar hasil Opening. Fungsi yang digunakan sama seperti pada opening, hanya terdapat perubahan pada `cv.MORPH_OPEN` yang diganti dengan `cv.MORPH_TOPHAT`.
+
+### Black Hat
+Black Hat merupakan perbedaan antara gambar awal yang diinputkan, dengan gambar hasil Closing. Fungsi yang digunakan sama seperti pada opening, hanya terdapat perubahan pada `cv.MORPH_OPEN` yang diganti dengan `cv.MORPH_BLACKHAT`. Sederhananya, outputnya merupakan objek dengan ketebalan yang dihasilkan dari hasil closing, yang dikurangi dengan gambar awal.
+
+</br>
+
+## Image Gradients
+Dalam openCV, terdapat tiga tipe gradien, yaitu Sobel, Scharr, dan Laplacian. Sobel sendiri sama seperti tools `Bevel and Emboss` pada Adobe Photoshop.
+
+### Sobel and Scharr Derivatives
+Pada tipe ini, operator Sobel merupakan gabungan smoothing ditambah operasi diferensiasi Gaussian, sehingga lebih tahan terhadap noise. Operator pada Sobel dapat diatur vertikal atau horizontal. Untuk kernelnya, bila bernilai -1, maka 3x3 Scharr filter memberikan hasil yang lebih baik dibanding 3x3 Sobel filter. Fungsi yang digunakan adalah `cv.Sobel()`.
+
+### Laplacian Derivatives
+Laplacian Derivatives akan menghitung nilai Laplace dari suatu gambar yang diinputkan dengan suatu formula, dimana setiap derivatif atau turunan yang ditemukan adalah menggunakan formula Sobel derivatif. Fungsi yang digunakan adalah `cv.Laplacian`.
+
+</br>
+
+## Canny Edge Detection
+
+## Image Pyramids
